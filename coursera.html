@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta-name="viewport" content="width=device-width, initial-scale=1">
+  <title>Food, LLC</title>
+
+  <!-- Bootstrap 3 CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- All CSS in one file -->
+  <style>
+    /* Mobile dropdown menu background */
+    #mobile-menu {
+      background-color: #eee;
+    }
+
+    /* Tall content section */
+    .big-section {
+      background: #e0f7fa;
+      padding: 20px;
+      height: 1000px;
+      border: 1px solid #ccc;
+    }
+  </style>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <!-- Mobile menu button -->
+      <button type="button" class="navbar-toggle collapsed visible-xs" data-toggle="collapse" data-target="#mobile-menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">Food, LLC</a>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="collapse navbar-collapse" id="mobile-menu">
+      <ul class="nav navbar-nav visible-xs">
+        <li><a href="#">Chicken</a></li>
+        <li><a href="#">Beef</a></li>
+        <li><a href="#">Sushi</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- PAGE HEADING -->
+<h1 class="text-center">Our Menu</h1>
+
+<!-- LARGE SECTION -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 big-section">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a augue sed 
+        ipsum accumsan tristique. Etiam eu fringilla dolor. Integer sit amet ligula 
+        nisi. Praesent nec turpis ut libero dictum tincidunt. Pellentesque habitant 
+        morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
