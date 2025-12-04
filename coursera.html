@@ -2,79 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta-name="viewport" content="width=device-width, initial-scale=1">
-  <title>Food, LLC</title>
+  <title>Module 5 Solution</title>
 
-  <!-- Bootstrap 3 CDN -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-  <!-- All CSS in one file -->
   <style>
-    /* Mobile dropdown menu background */
-    #mobile-menu {
-      background-color: #eee;
+    body { font-family: Arial; padding: 20px; }
+    .tile { 
+      width: 200px; 
+      height: 150px; 
+      background: #eee; 
+      display: inline-flex; 
+      justify-content: center; 
+      align-items: center; 
+      margin: 10px; 
+      cursor: pointer; 
+      border-radius: 10px;
+      font-size: 20px; 
     }
-
-    /* Tall content section */
-    .big-section {
-      background: #e0f7fa;
-      padding: 20px;
-      height: 1000px;
-      border: 1px solid #ccc;
-    }
+    .menu-items { margin-top: 30px; }
+    .item { padding: 10px; border-bottom: 1px solid #ccc; }
+    a { cursor: pointer; }
   </style>
-
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <h1>Restaurant</h1>
 
-    <div class="navbar-header">
-      <!-- Mobile menu button -->
-      <button type="button" class="navbar-toggle collapsed visible-xs" data-toggle="collapse" data-target="#mobile-menu">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <!-- Brand -->
-      <a class="navbar-brand" href="#">Food, LLC</a>
-    </div>
-
-    <!-- Mobile dropdown -->
-    <div class="collapse navbar-collapse" id="mobile-menu">
-      <ul class="nav navbar-nav visible-xs">
-        <li><a href="#">Chicken</a></li>
-        <li><a href="#">Beef</a></li>
-        <li><a href="#">Sushi</a></li>
-      </ul>
-    </div>
-
+  <div id="home">
+    <div class="tile" id="menuBtn">Menu</div>
+    <div class="tile" id="specialsBtn">Specials</div>
+    <div class="tile" id="mapBtn">Map</div>
   </div>
-</nav>
 
-<!-- PAGE HEADING -->
-<h1 class="text-center">Our Menu</h1>
+  <div id="content"></div>
 
-<!-- LARGE SECTION -->
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 big-section">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a augue sed 
-        ipsum accumsan tristique. Etiam eu fringilla dolor. Integer sit amet ligula 
-        nisi. Praesent nec turpis ut libero dictum tincidunt. Pellentesque habitant 
-        morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-      </p>
-    </div>
-  </div>
-</div>
+  <script>
+    // -----------------------------------------
+    // Fake categories database (instead of server)
+    // -----------------------------------------
+    const categories = [
+      { short_name: "L", name: "Lunch", items: ["Soup", "Salad", "Sandwich"] },
+      { short_name: "D", name: "Dinner", items: ["Steak", "Pasta", "Fish"] },
+      { short_name: "S", name: "Sushi", items: ["Maki", "Nigiri", "Sashimi"] },
+      { short_name: "DS", name: "Dessert", items: ["Cake", "Pie", "Ice cream"] },
+      { short_name: "B", name: "Breakfast", items: ["Pancakes", "Omelet", "Oatmeal"] }
+    ];
 
-<!-- Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    // -----------------------------------------
+    // STEP 0: Choose random category
+    // -----------------------------------------
+    function getRandomCategoryShortName() {
+      const randomIndex = Math.floor(Math.random() * categories.length);
+      return categories[randomIndex].short_name;
+    }
+
+    // -----------------------------------------
+    // STEP 1: Load category and show items
+    // -----------------------------------------
+    function loadMenuItems(categoryShortName) {
+      const category = categories.find(c => c.short_name === categoryShortName);
+      if (!category) return;
+
+      let html = `<h2>${category.name}</h2><div class="menu-items">`;
+
+      category.items.forEach(item => {
+        html += `<div class="item">${item}</div>`;
+      });
+
+      html += `</div><br><a onclick="goHome()">← Back to Home</a>`;
+
+      document.getElementById("content").innerHTML = html;
+      document.getElementById("home").style.display = "none";
+    }
+
+    // -----------------------------------------
+    // STEP 2: Home page
+    // -----------------------------------------
+    function goHome() {
+      document.getElementById("home").style.display = "block";
+      document.getElementById("content").innerHTML = "";
+    }
+
+    // -----------------------------------------
+    // STEP 3: Add button behavior
+    // -----------------------------------------
+    document.getElementById("specialsBtn").onclick = function() {
+      const randomCategory = getRandomCategoryShortName();
+      loadMenuItems(randomCategory);
+    };
+  </script>
 
 </body>
 </html>
